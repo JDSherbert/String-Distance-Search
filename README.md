@@ -1,4 +1,4 @@
-![image]()
+![image](https://github.com/JDSherbert/StringDistanceSearch/assets/43964243/037b2d63-8760-4456-8631-5cf801a4b46f)
 
 # String Distance Search
 
