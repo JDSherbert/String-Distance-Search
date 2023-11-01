@@ -1,4 +1,4 @@
-static class StringDistanceSearch
+public static class StringDistanceSearch
 {
     /// <summary>
     /// String distance search, where returned number is the total number of insertions, deletions and swaps
