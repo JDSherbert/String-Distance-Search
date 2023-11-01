@@ -1,5 +1,23 @@
 public static class StringDistanceSearch
 {
+    
+    public static int GetSearchDistance(string search, string target, int threshold = -1)
+    {
+        int minLength = Math.Min(search.Length, target.Length);
+        int targetLength = target.Length;
+        int difference = Math.Max(0, target.Length - search.Length);
+            
+        int minDistance = int.MaxValue;
+            
+        minDistance = Math.Min(minDistance, DamerauLevenshteinDistanceSearch(search, target.Substring(0, targetLength - difference), threshold));
+        for (int i = 1; i <= difference; i++)
+        {
+            minDistance = Math.Min(minDistance, DamerauLevenshteinDistanceSearch(search, target.Substring(i, minLength), threshold));
+        }
+            
+        return minDistance;
+    }
+    
     /// <summary>
     /// String distance search, where returned number is the total number of insertions, deletions and swaps
     /// </summary>
@@ -122,22 +140,5 @@ public static class StringDistanceSearch
     {
         if (threshold < 0) return DamerauLevenshteinDistance(source, target);
         else return DamerauLevenshteinDistanceShortCircuit(source, target, threshold);
-    }
-        
-    public static int GetSearchDistance(string search, string target, int threshold = -1)
-    {
-        int minLength = Math.Min(search.Length, target.Length);
-        int targetLength = target.Length;
-        int difference = Math.Max(0, target.Length - search.Length);
-            
-        int minDistance = int.MaxValue;
-            
-        minDistance = Math.Min(minDistance, DamerauLevenshteinDistanceSearch(search, target.Substring(0, targetLength - difference), threshold));
-        for (int i = 1; i <= difference; i++)
-        {
-            minDistance = Math.Min(minDistance, DamerauLevenshteinDistanceSearch(search, target.Substring(i, minLength), threshold));
-        }
-            
-        return minDistance;
     }
 }
